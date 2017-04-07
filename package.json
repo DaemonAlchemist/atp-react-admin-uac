@@ -1,0 +1,15 @@
+{
+  "name": "atp-uac",
+  "version": "1.0.0",
+  "description": "A user access control module.",
+  "main": "src/index.jsx",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git.repo"
+  },
+  "author": "Andrew Wittrock",
+  "license": "MIT"
+}
