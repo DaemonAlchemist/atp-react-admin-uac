@@ -6,6 +6,6 @@ import {connect} from "react-redux";
 import UserList from "../components/user/list";
 
 export default connect(
-    state => ({users: state.entities.user}),
+    state => ({users: state.entities.user, selectedUser: state.uac.user.selectedUser}),
     dispatch => ({dispatch})
 )(UserList);

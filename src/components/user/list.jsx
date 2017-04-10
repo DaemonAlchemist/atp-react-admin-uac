@@ -30,7 +30,11 @@ export default props =>
                         <NewUserForm/>
                     </ListGroupItem>
                     {props.users.$values().$sortBy("userName").map(user =>
-                        <ListGroupItem key={user.id}>
+                        <ListGroupItem
+                            key={user.id}
+                            onClick={() => props.onClick(user.id)}
+                            className={props.selectedUser == user.id ? "active" : ""}
+                        >
                             {user.userName}
                         </ListGroupItem>
                     )}

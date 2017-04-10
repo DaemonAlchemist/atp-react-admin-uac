@@ -29,7 +29,7 @@ export default props =>
                     <ListGroupItem>
                         <NewRoleForm/>
                     </ListGroupItem>
-                    {props.roles.$values().sort((a, b) => a.name.localeCompare(b.name)).map(role =>
+                    {props.roles.$values().$sortBy("name").map(role =>
                         <ListGroupItem
                             key={role.id}
                             onClick={() => props.onClick(role.id)}

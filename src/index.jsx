@@ -57,6 +57,7 @@ export default {
                                 permissions: ['auth.user.view'],
                                 onClick: dispatch => {
                                     dispatch(loadAllUsers());
+                                    dispatch(loadAllRoles());
                                     dispatch(addTab(usersTab));
                                 }
                             }
