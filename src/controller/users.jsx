@@ -7,9 +7,10 @@ import UserList from "../containers/UserList";
 import {selectUser, addRole, removeRole} from "../actions/users";
 import {connect} from "react-redux";
 import {Col, Row, Button, Panel} from "react-bootstrap";
+import {o} from "atp-sugar";
 
 const UserListContainer = connect(
-    state => state.uac.user.selectedUser.$as(userId => ({
+    state => o(state.uac.user.selectedUser).as(userId => ({
         user: userId ? state.entities.user[userId] : null,
         allRoles: state.entities.role,
         userRoles: userId && state.entities.user[userId].roles
@@ -26,7 +27,7 @@ const UserListContainer = connect(
                 <h1>{props.user.userName}</h1>
                 {props.allRoles
                     ? <Panel header={<span><i className="fa fa-sitemap"/> Roles</span>}>
-                    {props.allRoles.$map(role =>
+                    {o(props.allRoles).map(role =>
                         <Col key={role.id} xs={4} sm={3} md={2}>
                             {props.userRoles.includes(role.name)
                                 ? <Button
@@ -45,7 +46,7 @@ const UserListContainer = connect(
                             </Button>
                             }
                         </Col>
-                    ).$values()}
+                    ).values()}
                 </Panel>
                     : <span><i className="fa fa-spinner fa-spin" /> No user selected...</span>
                 }
