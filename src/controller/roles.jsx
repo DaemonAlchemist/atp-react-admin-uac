@@ -7,9 +7,10 @@ import RoleList from "../containers/RoleList";
 import {selectRole, authorize, deny} from "../actions/roles";
 import {connect} from "react-redux";
 import {Col, Row, Button, Panel} from "react-bootstrap";
+import {o} from "atp-sugar";
 
 const RoleListContainer = connect(
-    state => state.uac.role.selectedRole.$as(roleId => ({
+    state => o(state.uac.role.selectedRole).as(roleId => ({
         role: roleId ? state.entities.role[roleId] : null,
         allPermissions: state.entities.permission,
         rolePermissions: roleId && state.entities.role[roleId].permissions
@@ -26,7 +27,7 @@ const RoleListContainer = connect(
                 <h1>{props.role.name}</h1>
                 {props.allPermissions
                     ? <Panel header={<span><i className="fa fa-lock"/> Permissions</span>}>
-                        {props.allPermissions.$map(permission =>
+                        {o(props.allPermissions).map(permission =>
                             <Col key={permission.id} xs={4} sm={3} md={2}>
                                 {props.rolePermissions.includes(permission.name)
                                     ? <Button
@@ -45,7 +46,7 @@ const RoleListContainer = connect(
                                       </Button>
                                 }
                             </Col>
-                        ).$values()}
+                        ).values()}
                     </Panel>
                     : <span><i className="fa fa-spinner fa-spin" /> No role selected...</span>
                 }

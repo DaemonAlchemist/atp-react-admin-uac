@@ -3,6 +3,7 @@
  */
 
 import rest from "atp-rest";
+import {o} from "atp-sugar";
 
 export const LOGIN_SEND = "atp-uac/login-send";
 export const LOGIN_SUCCESS = "atp-uac/login";
@@ -12,7 +13,7 @@ export const LOGOUT = "atp-uac/logout";
 export const login = credentials => rest()
     .post('login')
     .start((credentials, dispatch) => dispatch({type: LOGIN_SEND, credentials: credentials}))
-    .then((data, dispatch) => dispatch({type: LOGIN_SUCCESS, }.$merge(data.results)))
+    .then((data, dispatch) => dispatch(o({type: LOGIN_SUCCESS}).merge(data.results).raw))
     .catch((err, dispatch) => dispatch({type: LOGIN_FAIL, err}))
     .send(credentials)
     .thunk();

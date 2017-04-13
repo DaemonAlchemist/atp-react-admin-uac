@@ -5,6 +5,7 @@
 import React from "react";
 import {Alert, Col, ListGroup, ListGroupItem, Button, InputGroup, FormControl} from "react-bootstrap";
 import {Field, reduxForm} from "redux-form";
+import {o} from "atp-sugar";
 
 import {createUser} from "atp-uac";
 
@@ -29,7 +30,8 @@ export default props =>
                     <ListGroupItem>
                         <NewUserForm/>
                     </ListGroupItem>
-                    {props.users.$values().$sortBy("userName").map(user =>
+
+                    {o(props.users).values().$sortBy("userName").map(user =>
                         <ListGroupItem
                             key={user.id}
                             onClick={() => props.onClick(user.id)}

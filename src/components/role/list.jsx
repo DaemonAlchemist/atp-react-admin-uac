@@ -5,6 +5,7 @@
 import React from "react";
 import {Alert, Col, ListGroup, ListGroupItem, Button, InputGroup, FormControl} from "react-bootstrap";
 import {Field, reduxForm} from "redux-form";
+import {o} from "atp-sugar";
 
 import {createRole} from "atp-uac";
 
@@ -29,7 +30,8 @@ export default props =>
                     <ListGroupItem>
                         <NewRoleForm/>
                     </ListGroupItem>
-                    {props.roles.$values().$sortBy("name").map(role =>
+
+                    {o(props.roles).$values().$sortBy("name").map(role =>
                         <ListGroupItem
                             key={role.id}
                             onClick={() => props.onClick(role.id)}

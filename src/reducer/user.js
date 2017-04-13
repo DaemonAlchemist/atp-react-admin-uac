@@ -3,13 +3,14 @@
  */
 
 import {SELECT_USER} from "../actions/users";
+import {o} from "atp-sugar";
 
 const initialState = {
     selectedUser: 0
 };
 
 export default (state = initialState, action) =>
-    action.type.$switch({
-        [SELECT_USER]: () => state.$merge({selectedUser: action.userId}),
+    o(action.type).switch({
+        [SELECT_USER]: () => o(state).merge({selectedUser: action.userId}).raw,
         default: () => state
     });

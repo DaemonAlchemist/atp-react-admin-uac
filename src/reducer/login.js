@@ -3,9 +3,10 @@
  */
 
 import {LOGIN_SUCCESS, LOGOUT} from "../actions/login";
+import {o} from "atp-sugar";
 
 export default (state = false, action) =>
-    action.type.$switch({
+    o(action.type).switch({
         [LOGIN_SUCCESS]: () => true,
         [LOGOUT]: () => false,
         default: () => state

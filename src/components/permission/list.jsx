@@ -5,7 +5,7 @@
 import React from "react";
 import {Alert, Col, ListGroup, ListGroupItem, Button, InputGroup, FormControl} from "react-bootstrap";
 import {Field, reduxForm} from "redux-form";
-
+import {o} from "atp-sugar";
 import {createPermission} from "atp-uac";
 
 const NewPermissionForm = reduxForm({
@@ -29,7 +29,7 @@ export default props =>
                     <ListGroupItem>
                         <NewPermissionForm/>
                     </ListGroupItem>
-                    {props.permissions.$values().sort((a, b) => a.name.localeCompare(b.name)).map(permission =>
+                    {o(props.permissions).values().sort((a, b) => a.name.localeCompare(b.name)).map(permission =>
                         <ListGroupItem key={permission.id}>
                             {permission.name}
                         </ListGroupItem>
