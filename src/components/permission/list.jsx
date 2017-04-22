@@ -3,24 +3,9 @@
  */
 
 import React from "react";
-import {Alert, Col, ListGroup, ListGroupItem, Button, InputGroup, FormControl} from "react-bootstrap";
-import {Field, reduxForm} from "redux-form";
+import {Col, ListGroup, ListGroupItem} from "react-bootstrap";
 import {o} from "atp-sugar";
-import {createPermission} from "atp-uac";
-
-const NewPermissionForm = reduxForm({
-    form: 'new-permission-form',
-    onSubmit: (data, dispatch) => dispatch(createPermission(data.permissionName))
-})(props =>
-    <form onSubmit={props.handleSubmit}>
-        <InputGroup>
-            <Field name="permissionName" placeholder="Permission name" component="input" className="form-control"/>
-            <InputGroup.Button>
-                <Button bsStyle="primary" type="submit"><i className="fa fa-plus"/> Create</Button>
-            </InputGroup.Button>
-        </InputGroup>
-    </form>
-);
+import NewPermissionForm from "../../containers/permission/form/create";
 
 export default props =>
     <Col xs={6} sm={4} md={3}>

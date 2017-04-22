@@ -4,24 +4,38 @@
 
 import React from "react";
 
-import permissionsTab from "./components/tabs/permissions";
-import rolesTab from "./components/tabs/roles";
-import usersTab from "./components/tabs/users";
 import {addTab} from "atp-ui";
-import uac from "./reducer";
-import {logout} from "./actions/login";
+import {logout} from "./reducer/login";
 import UserName from "./containers/UserName";
 
 import Authenticated from "./containers/Authenticated";
 import HasPermission from "./containers/HasPermission";
-import LoginForm from "./containers/forms/LoginForm";
-import {loadAllPermissions, createPermission} from "./actions/permissions";
-import {loadAllRoles, createRole} from "./actions/roles";
-import {loadAllUsers, createUser} from "./actions/users";
+import LoginForm from "./containers/login/form";
+import {Permission} from "./reducer/permission";
+import {Role, RolePermission} from "./reducer/role";
+import {User, UserRole} from "./reducer/user";
+import UserDashboard from "./containers/user/dashboard";
+
+import PermissionList from "./containers/permission/list";
+import RoleDashboard from "./containers/role/dashboard";
+import {Row} from "react-bootstrap";
+
+import isLoggedIn from "./reducer/login";
+import profile from "./reducer/profile";
+import loginToken from "./reducer/login-token";
+import role from "./reducer/role";
+import user from "./reducer/user";
+import {combineReducers} from "redux";
 
 export default {
     reducers: {
-        uac
+        uac: combineReducers({
+            isLoggedIn,
+            loginToken,
+            profile,
+            role,
+            user
+        })
     },
     init: {
         ui: {
@@ -37,8 +51,12 @@ export default {
                                 sortOrder: 0,
                                 permissions: ['auth.permission.view'],
                                 onClick: dispatch => {
-                                    dispatch(loadAllPermissions());
-                                    dispatch(addTab(permissionsTab));
+                                    dispatch(Permission().action.list({}));
+                                    dispatch(addTab({
+                                        title: <span><i className="fa fa-lock" /> Permissions</span>,
+                                        id: () => 'uac-permissions',
+                                        controller: () => <Row><PermissionList/></Row>
+                                    }));
                                 }
                             },
                             roles: {
@@ -46,9 +64,15 @@ export default {
                                 sortOrder: 1,
                                 permissions: ['auth.role.view'],
                                 onClick: dispatch => {
-                                    dispatch(loadAllRoles());
-                                    dispatch(loadAllPermissions());
-                                    dispatch(addTab(rolesTab));
+                                    dispatch(addTab({
+                                        title: <span><i className="fa fa-sitemap" /> Roles</span>,
+                                        id: () => 'uac-roles',
+                                        controller: () => {
+                                            dispatch(Role().action.list({}));
+                                            dispatch(Permission().action.list({}));
+                                            return <RoleDashboard/>;
+                                        }
+                                    }));
                                 }
                             },
                             users: {
@@ -56,9 +80,15 @@ export default {
                                 sortOrder: 1,
                                 permissions: ['auth.user.view'],
                                 onClick: dispatch => {
-                                    dispatch(loadAllUsers());
-                                    dispatch(loadAllRoles());
-                                    dispatch(addTab(usersTab));
+                                    dispatch(addTab({
+                                        title: <span><i className="fa fa-users" /> Users</span>,
+                                        id: () => 'uac-users',
+                                        controller: () => {
+                                            dispatch(User().action.list({}));
+                                            dispatch(Role().action.list({}));
+                                            return <UserDashboard/>;
+                                        }
+                                    }));
                                 }
                             }
                         }
@@ -87,4 +117,4 @@ export default {
     }
 };
 
-export {Authenticated, LoginForm, HasPermission, createPermission, createRole, createUser};
+export {Authenticated, LoginForm, HasPermission, Role, RolePermission, User, UserRole};

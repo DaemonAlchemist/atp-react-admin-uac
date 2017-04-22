@@ -3,15 +3,19 @@
  */
 
 import React from "react";
-import {Alert, Col, ListGroup, ListGroupItem, Button, InputGroup, FormControl} from "react-bootstrap";
+import {Col, ListGroup, ListGroupItem, Button, InputGroup} from "react-bootstrap";
 import {Field, reduxForm} from "redux-form";
 import {o, a} from "atp-sugar";
-
-import {createRole} from "atp-uac";
+import {Role} from "../../reducer/role";
 
 const NewRoleForm = reduxForm({
     form: 'new-role-form',
-    onSubmit: (data, dispatch) => dispatch(createRole(data.roleName))
+    onSubmit: (data, dispatch) => dispatch((dispatch, getState) => {
+        Role().action.post({name: data.roleName})(dispatch, getState).then(data => {
+            Role().action.list({})(dispatch, getState);
+            dispatch(Role().action.select(data.results.id));
+        });
+    })
 })(props =>
     <form onSubmit={props.handleSubmit}>
         <InputGroup>
