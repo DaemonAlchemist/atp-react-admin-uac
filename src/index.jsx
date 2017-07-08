@@ -27,6 +27,8 @@ import role from "./reducer/role";
 import user from "./reducer/user";
 import {combineReducers} from "redux";
 
+import "./config";
+
 export default {
     reducers: {
         uac: combineReducers({
