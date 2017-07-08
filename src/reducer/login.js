@@ -4,6 +4,8 @@
 
 import rest from "atp-rest";
 import {o} from "atp-sugar";
+import config from "atp-config";
+import {PROFILE_LOAD, loadProfile} from "./profile";
 
 //Action types
 export const LOGIN_SEND = "atp-uac/login-send";
@@ -19,12 +21,34 @@ export default (state = false, action) =>
         default: () => state
     });
 
+const parseLoginToken = (data, response) =>
+    o(config.get("login.tokenPath").split(":")).as(tokenPath =>
+        tokenPath.shift() === "HEADER"
+            ? response.header[tokenPath[0]]
+            : tokenPath.reduce((cur, index) => cur[index], data)
+    );
+
 //Action creators
 export const login = credentials => rest()
+    .module("login")
     .post('login')
     .start((credentials, dispatch) => dispatch({type: LOGIN_SEND, credentials: credentials}))
-    .then((data, dispatch) => dispatch(o({type: LOGIN_SUCCESS}).merge(data.results).raw))
-    .catch((err, dispatch) => dispatch({type: LOGIN_FAIL, err}))
+    .then(([data, dispatch, response]) => {
+        dispatch({
+            type: LOGIN_SUCCESS,
+            loginToken: parseLoginToken(data, response)
+        });
+        console.log("Login success action sent");
+        if(typeof data.profile !== "undefined") {
+            dispatch({
+                type: PROFILE_LOAD,
+                profile: data.profile
+            });
+        } else {
+            dispatch(loadProfile());
+        }
+    })
+    .catch(([err, dispatch]) => dispatch({type: LOGIN_FAIL, err}))
     .send(credentials)
     .thunk();
 
