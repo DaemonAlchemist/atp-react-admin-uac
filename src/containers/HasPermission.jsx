@@ -10,6 +10,6 @@ export default connect(
     dispatch => ({})
 )(props =>
     <div>
-        {(!props.permissions || props.userPermissions && a(props.userPermissions).intersect(props.permissions)) && props.children}
+        {(!props.permissions || props.userPermissions && a(props.userPermissions).intersect(props.permissions).length > 0) && props.children}
     </div>
 );
