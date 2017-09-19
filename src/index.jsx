@@ -4,6 +4,8 @@
 
 import React from "react";
 
+import "./config";
+
 import {addTab} from "atp-ui";
 import {logout} from "./reducer/login";
 import UserName from "./containers/UserName";
@@ -26,8 +28,6 @@ import loginToken from "./reducer/login-token";
 import role from "./reducer/role";
 import user from "./reducer/user";
 import {combineReducers} from "redux";
-
-import "./config";
 
 export default {
     reducers: {
