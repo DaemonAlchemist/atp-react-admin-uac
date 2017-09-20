@@ -39,10 +39,10 @@ export const login = credentials => rest()
             loginToken: parseLoginToken(data, response)
         });
         console.log("Login success action sent");
-        if(typeof data.profile !== "undefined") {
+        if(typeof data.results.profile !== "undefined") {
             dispatch({
                 type: PROFILE_LOAD,
-                profile: data.profile
+                profile: data.results.profile
             });
         } else {
             dispatch(loadProfile());
