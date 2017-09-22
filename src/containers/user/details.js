@@ -9,9 +9,9 @@ import {Role} from "../../reducer/role";
 
 export default connect(
     (state, props) => ({
-        user: User().selector.single(state, props.userId),
-        allRoles: Role().selector.list(state, {}),
-        userRoles: props.userId ? UserRole(props.userId).selector.list(state, {}) : []
+        user: User().select.one(() => state, props.userId),
+        allRoles: Role().select.all(() => state),
+        userRoles: props.userId ? UserRole(props.userId).select.list(() => state, {}) : []
     }),
     (dispatch, props) => ({
         joinRole: role => dispatch(UserRole(props.userId).action.join(role.id)),

@@ -53,7 +53,6 @@ export default {
                                 sortOrder: 0,
                                 permissions: ['auth.permission.view'],
                                 onClick: dispatch => {
-                                    dispatch(Permission().action.list({}));
                                     dispatch(addTab({
                                         title: <span><i className="fa fa-lock" /> Permissions</span>,
                                         id: () => 'uac-permissions',
@@ -69,11 +68,7 @@ export default {
                                     dispatch(addTab({
                                         title: <span><i className="fa fa-sitemap" /> Roles</span>,
                                         id: () => 'uac-roles',
-                                        controller: () => {
-                                            dispatch(Role().action.list({}));
-                                            dispatch(Permission().action.list({}));
-                                            return <RoleDashboard/>;
-                                        }
+                                        controller: () => <RoleDashboard/>
                                     }));
                                 }
                             },
@@ -85,11 +80,7 @@ export default {
                                     dispatch(addTab({
                                         title: <span><i className="fa fa-users" /> Users</span>,
                                         id: () => 'uac-users',
-                                        controller: () => {
-                                            dispatch(User().action.list({}));
-                                            dispatch(Role().action.list({}));
-                                            return <UserDashboard/>;
-                                        }
+                                        controller: () => <UserDashboard/>
                                     }));
                                 }
                             }
@@ -119,4 +110,4 @@ export default {
     }
 };
 
-export {Authenticated, LoginForm, HasPermission, Role, RolePermission, User, UserRole};
+export {Authenticated, LoginForm, HasPermission, Role, RolePermission, User, UserRole, Permission};
