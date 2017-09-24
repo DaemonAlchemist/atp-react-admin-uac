@@ -33,7 +33,7 @@ export const login = credentials => rest()
     .module("login")
     .post('login')
     .start((credentials, dispatch) => dispatch({type: LOGIN_SEND, credentials: credentials}))
-    .then(([data, dispatch, response]) => {
+    .then(([data, dispatch, getState, response]) => {
         dispatch({
             type: LOGIN_SUCCESS,
             loginToken: parseLoginToken(data, response)
