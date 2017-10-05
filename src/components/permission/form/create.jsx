@@ -9,7 +9,7 @@ import {Button, InputGroup} from "react-bootstrap";
 export default props =>
     <form onSubmit={props.handleSubmit}>
         <InputGroup>
-            <Field name="permissionName" placeholder="Permission name" component="input" className="form-control"/>
+            <Field name="name" placeholder="Permission name" component="input" className="form-control"/>
             <InputGroup.Button>
                 <Button bsStyle="primary" type="submit"><i className="fa fa-plus"/> Create</Button>
             </InputGroup.Button>
