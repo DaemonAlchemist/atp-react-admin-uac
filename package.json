@@ -11,5 +11,8 @@
     "url": "git.repo"
   },
   "author": "Andrew Wittrock",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react-lifecycle-component": "^2.0.5"
+  }
 }
