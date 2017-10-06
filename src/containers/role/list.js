@@ -9,7 +9,7 @@ import {Permission} from "../../reducer/permission";
 
 export default connectWithLifecycle(
     state => ({
-        roles: Role().selector.list(state, {}),
+        roles: Role().select.all(() => state),
         selectedRole: state.uac.role.selectedRole
     }),
     dispatch => ({

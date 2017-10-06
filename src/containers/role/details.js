@@ -9,9 +9,9 @@ import {Permission} from "../../reducer/permission";
 
 export default connect(
     (state, props) => ({
-        role: Role().selector.single(state, props.roleId),
-        allPermissions: Permission().selector.list(state, {}),
-        rolePermissions: props.roleId ? RolePermission(props.roleId).selector.list(state, {}) : null
+        role: Role().select.one(() => state, props.roleId),
+        allPermissions: Permission().select.all(() => state),
+        rolePermissions: props.roleId ? RolePermission(props.roleId).select.list(() => state, {}) : null
     }),
     (dispatch, props) => ({
         onAuthorize: permission => dispatch(RolePermission(props.roleId).action.authorize(permission.id)),
