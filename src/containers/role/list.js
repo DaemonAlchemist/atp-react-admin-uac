@@ -14,8 +14,8 @@ export default connectWithLifecycle(
     }),
     dispatch => ({
         componentDidMount: () => {
-            dispatch(Role().action.list({}));
-            dispatch(Permission().action.list({}));
+            dispatch(Role().action.collection.get({}));
+            dispatch(Permission().action.collection.get({}));
         },
         dispatch
     })

@@ -14,8 +14,8 @@ import Authenticated from "./containers/Authenticated";
 import HasPermission from "./containers/HasPermission";
 import LoginForm from "./containers/login/form";
 import {Permission} from "./reducer/permission";
-import {Role, RolePermission} from "./reducer/role";
-import {User, UserRole} from "./reducer/user";
+import {Role} from "./reducer/role";
+import {User} from "./reducer/user";
 import UserDashboard from "./containers/user/dashboard";
 
 import PermissionList from "./containers/permission/list";
@@ -110,4 +110,4 @@ export default {
     }
 };
 
-export {Authenticated, LoginForm, HasPermission, Role, RolePermission, User, UserRole, Permission};
+export {Authenticated, LoginForm, HasPermission, Role, User, Permission};

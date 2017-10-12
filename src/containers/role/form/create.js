@@ -10,7 +10,7 @@ export default reduxForm({
     form: 'new-role-form',
     onSubmit: (data, dispatch) => dispatch((dispatch, getState) => {
         Role().action.post({name: data.roleName})(dispatch, getState).then(data => {
-            Role().action.list({})(dispatch, getState);
+            Role().action.collection.get({})(dispatch, getState);
             dispatch(Role().action.select(data.results.id));
         });
     })

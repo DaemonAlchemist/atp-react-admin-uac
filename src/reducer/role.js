@@ -3,8 +3,9 @@
  */
 
 import {o} from "atp-sugar";
-import {entityBoilerplate, relatedEntityBoilerplate} from "atp-entity";
-import {permissionType, permissionName} from "./permission";
+import {entityBoilerplate, relatedEntityBoilerplate, updateEntity, entityUpdated} from "atp-entity";
+import {Permission, permissionType, permissionName} from "./permission";
+import {User} from "./user";
 
 //Entity types
 export const roleType = 'uacRole';
@@ -26,27 +27,16 @@ export default (state = initialState, action) =>
     });
 
 //REST selectors and actions
-export const Role = () => o(entityBoilerplate(roleType, 'role'))
+export const Role = () => o(entityBoilerplate(roleType, 'role')).as(role => o(role)
     .merge({
         action: {
             select: roleId => ({type: SELECT_ROLE, roleId}),
             details: roleId => (dispatch, getState) => {
-                Role().action.get(roleId)(dispatch, getState);
-                RolePermission(roleId).action.list({})(dispatch, getState);
+                Role().action.fetch(roleId)(dispatch, getState);
+                Role().permissions.action.list(roleId, {})(dispatch, getState);
             },
-        }
-    }).raw;
-
-export const RolePermission = roleId => o(relatedEntityBoilerplate(permissionType, 'role/' + roleId + "/permission", permissionName))
-    .merge({
-        action: {
-            authorize: permissionId => (dispatch, getState) => {
-                RolePermission(roleId).action.post(permissionId)(dispatch, getState)
-                    .then(data => Role().action.details(roleId)(dispatch, getState));
-            },
-            deny: permissionId => (dispatch, getState) => {
-                RolePermission(roleId).action.delete(permissionId)(dispatch, getState)
-                    .then(data => Role().action.details(roleId)(dispatch, getState));
-            }
-        }
-    }).raw;
+        },
+        permissions: role.children('permission', Permission()),
+        users: role.children('user', User())
+    }).raw
+);

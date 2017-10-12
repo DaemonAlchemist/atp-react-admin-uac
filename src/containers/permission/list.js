@@ -10,7 +10,7 @@ export default connectWithLifecycle(
     state => ({permissions: Permission().select.all(() => state)}),
     dispatch => ({
         componentDidMount: () => {
-            dispatch(Permission().action.list({}));
+            dispatch(Permission().action.collection.get({}));
         },
         dispatch
     })
