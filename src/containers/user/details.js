@@ -11,7 +11,9 @@ export default connect(
     (state, props) => ({
         user: User().select.one(() => state, props.userId),
         allRoles: Role().select.all(() => state),
-        userRoles: props.userId ? User().roles.select.all(() => state, props.userId) : []
+        userRoles: props.userId
+            ? Role().select.byIdList(() => state, User().roles.select.all(() => state, props.userId))
+            : []
     }),
     (dispatch, props) => ({
         joinRole: role => dispatch(User().roles.action.post(props.userId, role.id)),

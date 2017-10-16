@@ -13,8 +13,7 @@ export default connect(
         role: Role().select.one(() => state, props.roleId),
         allPermissions: Permission().select.all(() => state),
         rolePermissions: props.roleId
-            ? o(Role().permissions.select.all(() => state, props.roleId))
-                .as(ids => Permission().select.some(() => state, p => ids.includes(p.id)))
+            ? Permission().select.byIdList(() => state, Role().permissions.select.all(() => state, props.roleId))
             : []
     }),
     (dispatch, props) => ({
