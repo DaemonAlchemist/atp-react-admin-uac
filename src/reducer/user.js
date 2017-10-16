@@ -4,7 +4,7 @@
 
 import {o} from "atp-sugar";
 import {entityBoilerplate, relatedEntityBoilerplate} from "atp-entity";
-import {roleType, roleName} from "./role";
+import {Role, roleType, roleName} from "./role";
 
 //REST types
 export const userType = "uacUser";
@@ -26,26 +26,15 @@ export default (state = initialState, action) =>
     });
 
 //Standard REST selectors and actions
-export const User = () => o(entityBoilerplate(userType, 'user'))
+export const User = () => o(entityBoilerplate(userType, 'user')).as(user => o(user)
     .merge({
         action: {
             select: userId => ({type: SELECT_USER, userId}),
             details: userId => (dispatch, getState) => {
-                User().action.get(userId)(dispatch, getState);
-                UserRole(userId).action.list({})(dispatch, getState);
+                User().action.fetch(userId)(dispatch, getState);
+                User().roles.action.list(userId, {})(dispatch, getState);
             },
-        }
-    }).raw;
-export const UserRole = userId => o(relatedEntityBoilerplate(roleType, 'user/' + userId + "/role", roleName))
-    .merge({
-        action: {
-            join: roleId => (dispatch, getState) => {
-                UserRole(userId).action.post(roleId)(dispatch, getState)
-                    .then(data => User().action.details(userId)(dispatch, getState));
-            },
-            leave: roleId => (dispatch, getState) => {
-                UserRole(userId).action.delete(roleId)(dispatch, getState)
-                    .then(data => User().action.details(userId)(dispatch, getState));
-            }
-        }
-    }).raw;
+        },
+        roles: user.children('role', Role)
+    })
+).raw;

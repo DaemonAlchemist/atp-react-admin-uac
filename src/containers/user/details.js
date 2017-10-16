@@ -11,10 +11,10 @@ export default connect(
     (state, props) => ({
         user: User().select.one(() => state, props.userId),
         allRoles: Role().select.all(() => state),
-        userRoles: props.userId ? UserRole(props.userId).select.list(() => state, {}) : []
+        userRoles: props.userId ? User().roles.select.all(() => state, props.userId) : []
     }),
     (dispatch, props) => ({
-        joinRole: role => dispatch(UserRole(props.userId).action.join(role.id)),
-        leaveRole: role => dispatch(UserRole(props.userId).action.leave(role.id))
+        joinRole: role => dispatch(User().roles.action.post(props.userId, role.id)),
+        leaveRole: role => dispatch(User().roles.action.delete(props.userId, role.id))
     })
 )(UserDetails);

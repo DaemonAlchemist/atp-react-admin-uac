@@ -36,7 +36,7 @@ export const Role = () => o(entityBoilerplate(roleType, 'role')).as(role => o(ro
                 Role().permissions.action.list(roleId, {})(dispatch, getState);
             },
         },
-        permissions: role.children('permission', Permission()),
-        users: role.children('user', User())
+        permissions: role.children('permission', Permission),
+        users: role.children('user', User)
     }).raw
 );

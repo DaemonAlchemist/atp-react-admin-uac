@@ -12,7 +12,7 @@ export default props => props.user ? <Row>
         <h1 style={{marginTop: 0}}>
             <InlineEdit.Text
                 id="user.name.edit"
-                value={props.user.userName}
+                value={props.user.user_name}
                 onSave={(data, dispatch) => alert(JSON.stringify(data))}
             />
         </h1>
