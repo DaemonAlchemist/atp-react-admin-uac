@@ -13,7 +13,8 @@ export default props => props.user ? <Row>
             <InlineEdit.Text
                 id="user.name.edit"
                 value={props.user.user_name}
-                onSave={(data, dispatch) => alert(JSON.stringify(data))}
+                name="userName"
+                onSave={props.saveUserName}
             />
         </h1>
     </Col>

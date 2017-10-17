@@ -16,6 +16,7 @@ export default connect(
             : []
     }),
     (dispatch, props) => ({
+        saveUserName: (data, dispatch) => {dispatch(User().action.update(props.userId, data));},
         joinRole: role => dispatch(User().roles.action.post(props.userId, role.id)),
         leaveRole: role => dispatch(User().roles.action.delete(props.userId, role.id))
     })
