@@ -9,9 +9,8 @@ import NewRoleForm from "../../../components/role/form/create";
 export default reduxForm({
     form: 'new-role-form',
     onSubmit: (data, dispatch) => dispatch((dispatch, getState) => {
-        Role().action.post({name: data.roleName})(dispatch, getState).then(data => {
-            Role().action.collection.get({})(dispatch, getState);
+        Role().action.create({name: data.roleName}, (data, dispatch, getState) => {
             dispatch(Role().action.select(data.results.id));
-        });
+        })(dispatch, getState);
     })
 })(NewRoleForm);

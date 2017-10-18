@@ -9,9 +9,8 @@ import {User} from "../../../reducer/user";
 export default reduxForm({
     form: 'new-user-form',
     onSubmit: (data, dispatch) => dispatch((dispatch, getState) => {
-        User().action.post(data)(dispatch, getState).then(data => {
-            User().action.list({})(dispatch, getState);
+        User().action.create(data, (data, dispatch, getState) => {
             dispatch(User().action.select(data.results.id));
-        });
+        })(dispatch, getState);
     })
 })(NewUserForm);
