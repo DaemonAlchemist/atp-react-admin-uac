@@ -14,13 +14,13 @@ export default props => props.users ?
             <NewUserForm/>
         </ListGroupItem>
 
-        {a(props.users).sortBy("user_name").map(user =>
+        {a(props.users).sortBy("userName").map(user =>
             <ListGroupItem
                 key={user.id}
                 onClick={() => props.onClick(user.id)}
                 className={props.selectedUser == user.id ? "active" : ""}
             >
-                {user.user_name}
+                {user.userName}
             </ListGroupItem>
         )}
     </ListGroup>
