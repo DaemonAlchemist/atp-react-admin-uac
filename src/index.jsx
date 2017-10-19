@@ -27,6 +27,8 @@ import profile from "./reducer/profile";
 import loginToken from "./reducer/login-token";
 import role from "./reducer/role";
 import user from "./reducer/user";
+import {getLoginToken} from './reducer/login-token';
+
 import {combineReducers} from "redux";
 
 export default {
@@ -110,4 +112,4 @@ export default {
     }
 };
 
-export {Authenticated, LoginForm, HasPermission, Role, User, Permission};
+export {Authenticated, LoginForm, HasPermission, Role, User, Permission, getLoginToken};
