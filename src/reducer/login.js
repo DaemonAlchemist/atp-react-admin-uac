@@ -2,7 +2,7 @@
  * Created by Andy on 3/24/2017.
  */
 
-import rest from "atp-rest";
+import rest from "atp-rest-client";
 import {o} from "atp-sugar";
 import config from "atp-config";
 import {PROFILE_LOAD, loadProfile} from "./profile";

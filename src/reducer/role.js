@@ -3,7 +3,7 @@
  */
 
 import {o} from "atp-sugar";
-import {entityBoilerplate, relatedEntityBoilerplate, updateEntity, entityUpdated} from "atp-entity";
+import {entityBoilerplate, updateEntity, entityUpdated} from "atp-redux-entity";
 import {Permission, permissionType, permissionName} from "./permission";
 import {User} from "./user";
 

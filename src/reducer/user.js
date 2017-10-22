@@ -3,7 +3,7 @@
  */
 
 import {o} from "atp-sugar";
-import {entityBoilerplate, relatedEntityBoilerplate} from "atp-entity";
+import {entityBoilerplate, } from "atp-redux-entity";
 import {Role, roleType, roleName} from "./role";
 
 //REST types

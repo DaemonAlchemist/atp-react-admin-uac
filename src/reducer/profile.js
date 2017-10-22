@@ -3,7 +3,7 @@
  */
 
 import {o} from "atp-sugar";
-import rest from "atp-rest";
+import rest from "atp-rest-client";
 
 //Action types
 export const PROFILE_LOAD = "atp-uac/profile-load";
