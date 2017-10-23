@@ -7,7 +7,7 @@ import {Modal, FormGroup, Button} from "react-bootstrap";
 import {Field} from "redux-form";
 
 export default props =>
-    <Modal show={true} onHide={this.close} bsSize="small">
+    <Modal show={true} bsSize="small">
         <form onSubmit={props.handleSubmit}>
             <Modal.Header closeButton>
                 <Modal.Title>Login</Modal.Title>
