@@ -10,14 +10,15 @@ export default props => props.role ?
     <div>
         <h1 style={{marginTop: 0}}>{props.role.name}</h1>
         {props.allPermissions && props.rolePermissions
-            ? <Panel header={<span><i className="fa fa-lock"/> Permissions</span>}>
-            <Assigner
+            ? <Assigner
+                icon="fa fa-lock"
+                label="Permissions"
+                formId="rolePermissionAssigner"
                 available={props.allPermissions}
                 assigned={props.rolePermissions}
                 onAssign={props.onAuthorize}
                 onUnassign={props.onDeny}
-            />
-        </Panel>
+              />
             : <span><i className="fa fa-spinner fa-spin" /> Permissions loading...</span>
         }
     </div>

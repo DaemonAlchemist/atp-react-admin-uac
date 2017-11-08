@@ -19,16 +19,17 @@ export default props => props.user ? <Row>
         </h1>
     </Col>
     <Col xs={12}>
-        <Panel header={<span><i className="fa fa-sitemap"/> Roles</span>}>
-            {props.allRoles && props.userRoles
-                ? <Assigner
-                    available={props.allRoles}
-                    assigned={props.userRoles}
-                    onAssign={props.joinRole}
-                    onUnassign={props.leaveRole}
-                />
-                : <span><i className="fa fa-spinner fa-spin"/> Roles loading...</span>
-            }
-        </Panel>
+        {props.allRoles && props.userRoles
+            ? <Assigner
+                icon="fa fa-sitemap"
+                label="Roles"
+                formId="userRolesAssigner"
+                available={props.allRoles}
+                assigned={props.userRoles}
+                onAssign={props.joinRole}
+                onUnassign={props.leaveRole}
+              />
+            : <span><i className="fa fa-spinner fa-spin"/> Roles loading...</span>
+        }
     </Col>
 </Row> : null;
