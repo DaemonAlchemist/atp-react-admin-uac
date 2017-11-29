@@ -3,10 +3,11 @@
  */
 
 import React from "react";
+import {Route} from 'react-router';
+import {Link} from 'atp-react-tab-router';
 
 import "./config";
 
-import {addTab} from "atp-ui";
 import {logout} from "./reducer/login";
 import UserName from "./containers/UserName";
 
@@ -16,11 +17,10 @@ import LoginForm from "./containers/login/form";
 import {Permission} from "./reducer/permission";
 import {Role} from "./reducer/role";
 import {User} from "./reducer/user";
-import UserDashboard from "./containers/user/dashboard";
 
+import UserDashboard from "./containers/user/dashboard";
 import PermissionList from "./containers/permission/list";
 import RoleDashboard from "./containers/role/dashboard";
-import {Row} from "react-bootstrap";
 
 import isLoggedIn from "./reducer/login";
 import profile from "./reducer/profile";
@@ -41,6 +41,11 @@ export default {
             user
         })
     },
+    routes: [
+        <Route path="/uac/permissions" exact render={() => <PermissionList/>} />,
+        <Route path="/uac/roles" exact render={() => <RoleDashboard/>} />,
+        <Route path="/uac/users" exact render={() => <UserDashboard/>} />
+    ],
     init: {
         ui: {
             menus: {
@@ -51,40 +56,19 @@ export default {
                         permissions: ['auth.permission.view', 'auth.role.view', 'auth.user.view'],
                         children: {
                             permissions: {
-                                label: <span><i className="fa fa-lock"></i> Permissions</span>,
+                                label: <Link to="/uac/permissions" label="Permissions" target="new"><i className="fa fa-lock"></i> Permissions</Link>,
                                 sortOrder: 0,
                                 permissions: ['auth.permission.view'],
-                                onClick: dispatch => {
-                                    dispatch(addTab({
-                                        title: <span><i className="fa fa-lock" /> Permissions</span>,
-                                        id: () => 'uac-permissions',
-                                        controller: () => <Row><PermissionList/></Row>
-                                    }));
-                                }
                             },
                             roles: {
-                                label: <span><i className="fa fa-sitemap"></i> Roles</span>,
+                                label: <Link to="/uac/roles" label="Roles" target="new"><i className="fa fa-sitemap"></i> Roles</Link>,
                                 sortOrder: 1,
                                 permissions: ['auth.role.view'],
-                                onClick: dispatch => {
-                                    dispatch(addTab({
-                                        title: <span><i className="fa fa-sitemap" /> Roles</span>,
-                                        id: () => 'uac-roles',
-                                        controller: () => <RoleDashboard/>
-                                    }));
-                                }
                             },
                             users: {
-                                label: <span><i className="fa fa-users"></i> Users</span>,
+                                label: <Link to="/uac/users" label="Users" target="new"><i className="fa fa-users"></i> Users</Link>,
                                 sortOrder: 1,
                                 permissions: ['auth.user.view'],
-                                onClick: dispatch => {
-                                    dispatch(addTab({
-                                        title: <span><i className="fa fa-users" /> Users</span>,
-                                        id: () => 'uac-users',
-                                        controller: () => <UserDashboard/>
-                                    }));
-                                }
                             }
                         }
                     }
