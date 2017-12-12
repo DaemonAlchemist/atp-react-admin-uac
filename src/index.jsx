@@ -10,6 +10,7 @@ import "./config";
 
 import {logout} from "./reducer/login";
 import UserName from "./containers/UserName";
+import {UserLink, UserLinkFull} from "./components/links";
 
 import Authenticated from "./containers/Authenticated";
 import HasPermission from "./containers/HasPermission";
@@ -96,4 +97,4 @@ export default {
     }
 };
 
-export {Authenticated, LoginForm, HasPermission, Role, User, Permission, getLoginToken};
+export {Authenticated, LoginForm, HasPermission, Role, User, Permission, getLoginToken, UserLink, UserLinkFull};
