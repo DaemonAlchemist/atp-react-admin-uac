@@ -43,9 +43,9 @@ export default {
         })
     },
     routes: [
-        <Route path="/uac/permissions" exact render={() => <PermissionList/>} />,
-        <Route path="/uac/roles" exact render={() => <RoleDashboard/>} />,
-        <Route path="/uac/users" exact render={() => <UserDashboard/>} />
+        <Route path="/uac/permissions" key="/uac/permissions" exact render={() => <PermissionList/>} />,
+        <Route path="/uac/roles" key="/uac/roles" exact render={() => <RoleDashboard/>} />,
+        <Route path="/uac/users" key="/uac/users" exact render={() => <UserDashboard/>} />
     ],
     init: {
         ui: {
@@ -58,16 +58,19 @@ export default {
                         children: {
                             permissions: {
                                 label: <Link to="/uac/permissions" label="Permissions" target="new"><i className="fa fa-lock"></i> Permissions</Link>,
+                                noAnchor: true,
                                 sortOrder: 0,
                                 permissions: ['auth.permission.view'],
                             },
                             roles: {
                                 label: <Link to="/uac/roles" label="Roles" target="new"><i className="fa fa-sitemap"></i> Roles</Link>,
+                                noAnchor: true,
                                 sortOrder: 1,
                                 permissions: ['auth.role.view'],
                             },
                             users: {
                                 label: <Link to="/uac/users" label="Users" target="new"><i className="fa fa-users"></i> Users</Link>,
+                                noAnchor: true,
                                 sortOrder: 1,
                                 permissions: ['auth.user.view'],
                             }
