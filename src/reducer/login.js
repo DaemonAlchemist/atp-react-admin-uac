@@ -6,6 +6,7 @@ import rest from "atp-rest-client";
 import {o} from "atp-sugar";
 import config from "atp-config";
 import {PROFILE_LOAD, loadProfile} from "./profile";
+import {addError} from 'atp-flash';
 
 //Action types
 export const LOGIN_SEND = "atp-uac/login-send";
@@ -48,7 +49,10 @@ export const login = credentials => rest()
             dispatch(loadProfile());
         }
     })
-    .catch(([err, dispatch]) => dispatch({type: LOGIN_FAIL, err}))
+    .catch(([err, dispatch]) => {
+        dispatch({type: LOGIN_FAIL, err});
+        dispatch(addError("Login failed: " + err));
+    })
     .send(credentials)
     .thunk();
 
