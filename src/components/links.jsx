@@ -22,7 +22,9 @@ export const UserLinkFull = connectWithLifecycle(
     })
 )(({user}) => user
     ? <UserLink user={user}>
-        <i className="fa fa-user"/> {user.userName}
+        <span  style={{whiteSpace: "nowrap"}}>
+            <i className="fa fa-user"/> {user.userName}
+        </span>
      </UserLink>
     : <div><i className="fa fa-spinner fa-spin" /> Loading...</div>
 );
