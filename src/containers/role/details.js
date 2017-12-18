@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import RoleDetails from "../../components/role/details";
 import {Role} from "../../reducer/role";
 import {Permission} from "../../reducer/permission";
-import {o} from 'atp-sugar';
 
 export default connect(
     (state, props) => ({
