@@ -28,6 +28,7 @@
   "license": "MIT",
   "dependencies": {
     "atp-config": "^0.3.3",
+    "atp-flash": "^0.2.1",
     "atp-inline-edit": "^0.9.1",
     "atp-pointfree": "^0.5.1",
     "atp-react-tab-router": "^0.3.2",
