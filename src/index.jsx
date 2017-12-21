@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 3/18/2017.
- */
 
 import React from "react";
 import {Route} from 'react-router';
@@ -31,6 +28,7 @@ import user from "./reducer/user";
 import {getLoginToken} from './reducer/login-token';
 
 import {combineReducers} from "redux";
+import {Icon} from 'react-font-awesome-5';
 
 export default {
     reducers: {
@@ -52,24 +50,24 @@ export default {
             menus: {
                 main: {
                     uac: {
-                        label: <span><i className="fa fa-lock"></i> UAC</span>,
+                        label: <span><Icon.Lock /> UAC</span>,
                         sortOrder: 0,
                         permissions: ['auth.permission.view', 'auth.role.view', 'auth.user.view'],
                         children: {
                             permissions: {
-                                label: <Link to="/uac/permissions" label="Permissions" target="new"><i className="fa fa-lock"></i> Permissions</Link>,
+                                label: <Link to="/uac/permissions" label="Permissions" target="new"><Icon.Lock fixedWidth /> Permissions</Link>,
                                 noAnchor: true,
                                 sortOrder: 0,
                                 permissions: ['auth.permission.view'],
                             },
                             roles: {
-                                label: <Link to="/uac/roles" label="Roles" target="new"><i className="fa fa-sitemap"></i> Roles</Link>,
+                                label: <Link to="/uac/roles" label="Roles" target="new"><Icon.Sitemap fixedWidth /> Roles</Link>,
                                 noAnchor: true,
                                 sortOrder: 1,
                                 permissions: ['auth.role.view'],
                             },
                             users: {
-                                label: <Link to="/uac/users" label="Users" target="new"><i className="fa fa-users"></i> Users</Link>,
+                                label: <Link to="/uac/users" label="Users" target="new"><Icon.Users fixedWidth /> Users</Link>,
                                 noAnchor: true,
                                 sortOrder: 1,
                                 permissions: ['auth.user.view'],
@@ -79,16 +77,16 @@ export default {
                 },
                 altMain: {
                     uac: {
-                        label: <span><i className="fa fa-user" /> <UserName/></span>,
+                        label: <span><Icon.User /> <UserName/></span>,
                         sortOrder: 999,
                         children: {
                             myAccount: {
-                                label: <span><i className="fa fa-user" /> My Account</span>,
+                                label: <span><Icon.User /> My Account</span>,
                                 sortOrder: 0,
                                 onClick: () => false,
                             },
                             logout: {
-                                label: <span><i className="fa fa-sign-out" /> Logout</span>,
+                                label: <span><Icon.SignOutAlt /> Logout</span>,
                                 sortOrder: 999,
                                 onClick: dispatch => dispatch(logout()),
                             }

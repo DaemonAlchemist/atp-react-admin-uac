@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 3/19/2017.
- */
 
 import {connect} from "react-redux";
 import {Role} from "../../reducer/role";

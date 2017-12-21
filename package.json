@@ -37,6 +37,7 @@
     "atp-ui": "^0.6.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
+    "react-font-awesome-5": "^0.2.0",
     "react-lifecycle-component": "^3.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

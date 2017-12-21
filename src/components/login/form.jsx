@@ -1,16 +1,14 @@
-/**
- * Created by Andy on 3/24/2017.
- */
 
 import React from "react";
 import {Modal, FormGroup, Button} from "react-bootstrap";
 import {Field} from "redux-form";
+import {Icon} from 'react-font-awesome-5';
 
 export default props =>
     <Modal show={true} bsSize="small">
         <form onSubmit={props.handleSubmit}>
             <Modal.Header closeButton>
-                <Modal.Title>Login</Modal.Title>
+                <Modal.Title><Icon.SignInAlt /> Login</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <FormGroup>
@@ -22,7 +20,7 @@ export default props =>
             </Modal.Body>
             <Modal.Footer>
                 <Button bsStyle="primary" type="submit">
-                    <i className="fa fa-sign-in" /> Login
+                    <Icon.SignInAlt/> Login
                 </Button>
             </Modal.Footer>
         </form>

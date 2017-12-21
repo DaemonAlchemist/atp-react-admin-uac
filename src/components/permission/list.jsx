@@ -1,11 +1,9 @@
-/**
- * Created by Andy on 3/27/2017.
- */
 
 import React from "react";
 import {Col, ListGroup, ListGroupItem} from "react-bootstrap";
 import {o} from "atp-sugar";
 import NewPermissionForm from "../../containers/permission/form/create";
+import {Icon} from 'react-font-awesome-5';
 
 export default props =>
     <Col xs={6} sm={4} md={3}>
@@ -20,6 +18,6 @@ export default props =>
                         </ListGroupItem>
                     )}
                 </ListGroup>
-            : <span><i className="fa fa-spinner fa-spin"/> Loading...</span>
+            : <span><Icon.Spinner spin /> Loading...</span>
         }
     </Col>;

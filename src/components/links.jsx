@@ -1,17 +1,19 @@
+
 import React from 'react';
 import {connectWithLifecycle} from 'react-lifecycle-component';
 import {Link} from 'atp-react-tab-router';
 import {User} from "../reducer/user";
 import {get} from 'atp-pointfree';
+import {Icon} from 'react-font-awesome-5';
 
 export const UserLink = props => props.user
     ? <Link
         {...props}
         to={`/uac/user/${props.user.id}`}
-        label={<span><i className="fa fa-user" /> User "{props.user.userName}"</span>}
+        label={<span><Icon.User /> User "{props.user.userName}"</span>}
         target="new"
       />
-    : <div><i className="fa fa-spinner fa-spin" /> Loading...</div>;
+    : <div><Icon.Spinner spin /> Loading...</div>;
 
 export const UserLinkFull = connectWithLifecycle(
     (state, props) => ({
@@ -23,8 +25,8 @@ export const UserLinkFull = connectWithLifecycle(
 )(({user}) => user
     ? <UserLink user={user}>
         <span  style={{whiteSpace: "nowrap"}}>
-            <i className="fa fa-user"/> {user.userName}
+            <Icon.User /> {user.userName}
         </span>
      </UserLink>
-    : <div><i className="fa fa-spinner fa-spin" /> Loading...</div>
+    : <div><Icon.Spinner spin /> Loading...</div>
 );

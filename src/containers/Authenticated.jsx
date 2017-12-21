@@ -1,11 +1,13 @@
-/**
- * Created by Andy on 3/24/2017.
- */
+
 import React from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {identity} from 'atp-pointfree';
 
 export default withRouter(connect(
     state => ({isLoggedIn: state.uac.isLoggedIn || false}),
     dispatch => ({})
-)(props => <div>{(props.isLoggedIn && props.yes || !props.isLoggedIn && props.no) && props.children}</div>));
+)(({isLoggedIn, yes, no, children}) => isLoggedIn && yes || !isLoggedIn && no
+    ? React.Children.map(children, identity)
+    : null
+));

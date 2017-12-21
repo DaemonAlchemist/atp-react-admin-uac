@@ -1,15 +1,14 @@
-/**
- * Created by Andy on 3/24/2017.
- */
+
 import React from "react";
 import {connect} from "react-redux";
 import {a} from "atp-sugar";
+import {identity} from 'atp-pointfree';
 
 export default connect(
     state => ({userPermissions: state.uac.profile.permissions}),
     dispatch => ({})
-)(props =>
-    <div>
-        {(!props.permissions || props.userPermissions && a(props.userPermissions).intersect(props.permissions).length > 0) && props.children}
-    </div>
+)(({permissions, userPermissions, children}) =>
+    !permissions || userPermissions && a(userPermissions).intersect(permissions).length > 0
+        ? React.Children.map(children, identity)
+        : null
 );

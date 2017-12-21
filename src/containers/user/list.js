@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 3/27/2017.
- */
 
 import {connectWithLifecycle} from "react-lifecycle-component";
 import UserList from "../../components/user/list";

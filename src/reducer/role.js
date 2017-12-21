@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 4/3/2017.
- */
 
 import {o} from "atp-sugar";
 import {entityBoilerplate, updateEntity, entityUpdated} from "atp-redux-entity";

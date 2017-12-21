@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 4/21/2017.
- */
 
 import {User} from "../../reducer/user";
 import {connect} from "react-redux";

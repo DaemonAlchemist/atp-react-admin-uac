@@ -1,17 +1,14 @@
-/**
- * Created by Andy on 4/21/2017.
- */
 
 import React from "react";
-import {Panel} from "react-bootstrap";
 import {Assigner} from "atp-ui";
+import {Icon} from 'react-font-awesome-5';
 
 export default props => props.role ?
     <div>
         <h1 style={{marginTop: 0}}>{props.role.name}</h1>
         {props.allPermissions && props.rolePermissions
             ? <Assigner
-                icon="fa fa-lock"
+                Icon={Icon.Lock}
                 label="Permissions"
                 formId="rolePermissionAssigner"
                 available={props.allPermissions}
@@ -19,7 +16,7 @@ export default props => props.role ?
                 onAssign={props.onAuthorize}
                 onUnassign={props.onDeny}
               />
-            : <span><i className="fa fa-spinner fa-spin" /> Permissions loading...</span>
+            : <span><Icon.Spinner spin /> Permissions loading...</span>
         }
     </div>
     : null;

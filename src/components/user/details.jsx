@@ -1,11 +1,9 @@
-/**
- * Created by Andy on 4/21/2017.
- */
 
 import React from "react";
-import {Col, Row, Panel} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import {InlineEdit} from "atp-inline-edit";
 import {Assigner} from "atp-ui";
+import {Icon} from 'react-font-awesome-5';
 
 export default props => props.user ? <Row>
     <Col xs={12} sm={6} md={4}>
@@ -21,7 +19,7 @@ export default props => props.user ? <Row>
     <Col xs={12}>
         {props.allRoles && props.userRoles
             ? <Assigner
-                icon="fa fa-sitemap"
+                Icon={Icon.Sitemap}
                 label="Roles"
                 formId="userRolesAssigner"
                 available={props.allRoles}
@@ -29,7 +27,7 @@ export default props => props.user ? <Row>
                 onAssign={props.joinRole}
                 onUnassign={props.leaveRole}
               />
-            : <span><i className="fa fa-spinner fa-spin"/> Roles loading...</span>
+            : <span><Icon.Spinner spin /> Roles loading...</span>
         }
     </Col>
 </Row> : null;

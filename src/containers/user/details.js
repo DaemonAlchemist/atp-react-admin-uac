@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 4/21/2017.
- */
 
 import {connect} from "react-redux";
 import UserDetails from "../../components/user/details";

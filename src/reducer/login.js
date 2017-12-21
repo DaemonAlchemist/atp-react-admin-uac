@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 3/24/2017.
- */
 
 import rest from "atp-rest-client";
 import {o} from "atp-sugar";
@@ -39,7 +36,6 @@ export const login = credentials => rest()
             type: LOGIN_SUCCESS,
             loginToken: parseLoginToken(data, response)
         });
-        console.log("Login success action sent");
         if(typeof data.results.profile !== "undefined") {
             dispatch({
                 type: PROFILE_LOAD,

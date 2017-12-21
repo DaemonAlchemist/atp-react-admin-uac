@@ -1,6 +1,3 @@
-/**
- * Created by Andy on 3/24/2017.
- */
 
 import {o} from "atp-sugar";
 import rest from "atp-rest-client";
@@ -20,7 +17,6 @@ export const loadProfile = () => rest()
     .module("appSecurity")
     .get('profile')
     .then(([data, dispatch]) => {
-        console.log(data);
         const profile = o(data.user[0]).as(user => ({
             userName: user.userName,
             firstName: user.firstName,
