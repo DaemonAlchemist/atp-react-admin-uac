@@ -4,9 +4,7 @@ import {Col, Row, Button} from "react-bootstrap";
 import {InlineEdit} from "atp-inline-edit";
 import {Assigner} from "atp-ui";
 import {Icon} from 'react-font-awesome-5';
-
-const toggleGroup = "atpUacUserModal";
-const toggleId = "changePassword";
+import ChangePasswordModal from "../../containers/user/form/change-password";
 
 export default ({user, saveUserName, isPasswordModalVisible, showPasswordModal, changePassword, allRoles, userRoles, joinRole, leaveRole}) => user ? <Row>
     <Col xs={12} sm={6} md={4}>
@@ -23,7 +21,7 @@ export default ({user, saveUserName, isPasswordModalVisible, showPasswordModal, 
         <Button bsSize="lg" onClick={showPasswordModal}>
             <Icon.Lock/> Change password
         </Button>
-        {isPasswordModalVisible && <Button onClick={changePassword}>Change password modal goes here.</Button>}
+        {isPasswordModalVisible && <ChangePasswordModal id={user.id} />}
     </Col>
     <Col xs={12}>
         {allRoles && userRoles
