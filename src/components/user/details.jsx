@@ -6,7 +6,7 @@ import {Assigner} from "atp-ui";
 import {Icon} from 'react-font-awesome-5';
 import ChangePasswordModal from "../../containers/user/form/change-password";
 
-export default ({user, saveUserName, isPasswordModalVisible, showPasswordModal, changePassword, allRoles, userRoles, joinRole, leaveRole}) => user ? <Row>
+export default ({user, saveUserName, isPasswordModalVisible, showPasswordModal, changePassword, deleteUser, allRoles, userRoles, joinRole, leaveRole}) => user ? <Row>
     <Col xs={12} sm={6} md={4}>
         <h1 style={{marginTop: 0}}>
             <InlineEdit.Text
@@ -20,6 +20,9 @@ export default ({user, saveUserName, isPasswordModalVisible, showPasswordModal, 
     <Col xs={12} sm={6} md={8} className="text-right">
         <Button bsSize="lg" onClick={showPasswordModal}>
             <Icon.Lock/> Change password
+        </Button>
+        <Button bsSize="lg" bsStyle="danger" onClick={deleteUser}>
+            <Icon.Times /> Delete user
         </Button>
         {isPasswordModalVisible && <ChangePasswordModal id={user.id} />}
     </Col>

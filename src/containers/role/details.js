@@ -14,6 +14,7 @@ export default connect(
     }),
     (dispatch, props) => ({
         onAuthorize: permission => dispatch(Role().permissions.action.post(props.roleId, permission.id)),
-        onDeny: permission => dispatch(Role().permissions.action.delete(props.roleId, permission.id))
+        onDeny: permission => dispatch(Role().permissions.action.delete(props.roleId, permission.id)),
+        deleteRole: () => {dispatch(Role().action.delete(props.roleId))}
     })
 )(RoleDetails);

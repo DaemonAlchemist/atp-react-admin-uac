@@ -9,6 +9,8 @@ export default connectWithLifecycle(
         componentDidMount: () => {
             dispatch(Permission().action.collection.get({}));
         },
-        dispatch
+        onDelete: id => () => {
+            dispatch(Permission().action.delete(id));
+        }
     })
 )(PermissionList);

@@ -13,7 +13,6 @@ export default connectWithLifecycle(
         componentDidMount: () => {
             dispatch(User().action.collection.get({}));
             dispatch(Role().action.collection.get({}));
-        },
-        dispatch
+        }
     })
 )(UserList);
