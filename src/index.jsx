@@ -19,6 +19,7 @@ import {User} from "./reducer/user";
 import UserDashboard from "./containers/user/dashboard";
 import PermissionList from "./containers/permission/list";
 import RoleDashboard from "./containers/role/dashboard";
+import UserProfile from "./containers/user/profile";
 
 import isLoggedIn from "./reducer/login";
 import profile from "./reducer/profile";
@@ -43,7 +44,8 @@ export default {
     routes: [
         <Route path="/uac/permissions" key="/uac/permissions" exact render={() => <PermissionList/>} />,
         <Route path="/uac/roles" key="/uac/roles" exact render={() => <RoleDashboard/>} />,
-        <Route path="/uac/users" key="/uac/users" exact render={() => <UserDashboard/>} />
+        <Route path="/uac/users" key="/uac/users" exact render={() => <UserDashboard/>} />,
+        <Route path="/uac/profile" key="/uac/profile" exact render={() => <UserProfile/>} />
     ],
     init: {
         ui: {
@@ -81,9 +83,8 @@ export default {
                         sortOrder: 999,
                         children: {
                             myAccount: {
-                                label: <span><Icon.User /> My Account</span>,
-                                sortOrder: 0,
-                                onClick: () => false,
+                                label: <Link to="/uac/profile" label="Profile" target="new"><Icon.User /> My Account</Link>,
+                                sortOrder: 0
                             },
                             logout: {
                                 label: <span><Icon.SignOutAlt /> Logout</span>,

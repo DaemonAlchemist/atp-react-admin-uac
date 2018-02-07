@@ -2,6 +2,7 @@
 import {o} from "atp-sugar";
 import {entityBoilerplate, } from "atp-redux-entity";
 import {Role, roleType, roleName} from "./role";
+import {ApiKey} from './api-key';
 
 //REST types
 export const userType = "uacUser";
@@ -32,6 +33,7 @@ export const User = () => o(entityBoilerplate(userType, 'user')).as(user => o(us
                 User().roles.action.list(userId, {})(dispatch, getState);
             },
         },
-        roles: user.children('role', Role)
+        roles: user.children('role', Role),
+        keys: user.children('key', ApiKey)
     })
 ).raw;
