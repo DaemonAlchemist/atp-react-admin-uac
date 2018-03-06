@@ -14,7 +14,9 @@ export default connect(
             : [],
     }),
     (dispatch, props) => ({
-        saveUserName: (data, dispatch) => {dispatch(User().action.update(props.userId, data));},
+        updateUser: (data, dispatch) => {dispatch(User().action.update(props.userId, data));},
+        updateEnabled: enabled => {dispatch(User().action.update(props.userId, {enabled}))},
+        updateLocked: unlocked => {dispatch(User().action.update(props.userId, {locked: !unlocked}))},
         deleteUser: () => {dispatch(User().action.delete(props.userId));},
         joinRole: role => {dispatch(User().roles.action.post(props.userId, role.id));},
         leaveRole: role => {dispatch(User().roles.action.delete(props.userId, role.id));},

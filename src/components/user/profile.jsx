@@ -5,6 +5,7 @@ import ChangePasswordModal from "../../containers/user/form/change-password";
 import ApiKeyList from "../../containers/api-key/list";
 import {Icon} from 'react-font-awesome-5';
 import {InlineEdit} from "atp-inline-edit";
+import HasPermission from "../../containers/HasPermission";
 
 export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, userRoles}) =>
     <Row>
@@ -54,16 +55,18 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                     </Panel>
                 </Col>
                 <Col xs={12} sm={6}>
-                    <Panel>
-                        <Panel.Heading>Roles</Panel.Heading>
-                        <Panel.Body>
-                            <Row>
-                                <Col xs={12}>
-                                    {userRoles.sort().map(role => <Badge style={{margin: "4px"}}>{role.name}</Badge>)}
-                                </Col>
-                            </Row>
-                        </Panel.Body>
-                    </Panel>
+                    <HasPermission permissions={['auth.role.view']}>
+                        <Panel>
+                            <Panel.Heading>Roles</Panel.Heading>
+                            <Panel.Body>
+                                <Row>
+                                    <Col xs={12}>
+                                        {userRoles.sort().map(role => <Badge style={{margin: "4px"}}>{role.name}</Badge>)}
+                                    </Col>
+                                </Row>
+                            </Panel.Body>
+                        </Panel>
+                    </HasPermission>
                 </Col>
                 <Col xs={12}>
                     <Panel>
@@ -79,9 +82,11 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                         </Panel.Body>
                     </Panel>
                 </Col>
-                <Col xs={12}>
-                    <ApiKeyList userId={user.id} />
-                </Col>
+                <HasPermission permissions={['auth.key.view']}>
+                    <Col xs={12}>
+                        <ApiKeyList userId={user.id} />
+                    </Col>
+                </HasPermission>
             </Row>
         </Col>
         {isPasswordModalVisible && <ChangePasswordModal id={user.id} />}

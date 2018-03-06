@@ -12,7 +12,7 @@ export default compose(connect(
     (state, props) => ({
         user: state.uac.profile,
         isPasswordModalVisible: toggle.isVisible(get(state), passwordModalToggleId),
-        userRoles: state.uac.profile.id
+        userRoles: state.uac.profile.id && state.uac.profile.permissions.includes('auth.role.view')
             ? Role().select.byIdList(get(state), User().roles.select.all(get(state), state.uac.profile.id))
             : [],
     }),
@@ -28,7 +28,9 @@ export default compose(connect(
         componentDidMount: () => {
             if(stateProps.user.id) {
                 dispatchProps.dispatch(User().action.details(stateProps.user.id));
-                dispatchProps.dispatch(Role().action.collection.get({}));
+                if(stateProps.user.permissions.includes('auth.role.view')) {
+                    dispatchProps.dispatch(Role().action.collection.get({}));
+                }
             }
         },
     })
