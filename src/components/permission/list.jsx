@@ -22,7 +22,7 @@ export default props =>
                                 style={{float: "right"}}
                                 onClick={props.onDelete(permission.id)}
                             >
-                                <Icon.Times />
+                                <Icon.Trash />
                             </Button>
                         </ListGroupItem>
                     )}

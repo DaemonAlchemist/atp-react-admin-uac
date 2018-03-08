@@ -45,8 +45,17 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                                         onSave={updateUser(user.id)}
                                     />
                                 </Col>
+                                <Col xs={3}><b>Email:</b></Col>
+                                <Col xs={9}>
+                                    <InlineEdit.Text
+                                        id="user.email.edit"
+                                        value={user.email}
+                                        name="email"
+                                        onSave={updateUser(user.id)}
+                                    />
+                                </Col>
                                 <Col xs={9} xsOffset={3}>
-                                    <Button onClick={showPasswordModal}>
+                                    <Button bsStyle="link" onClick={showPasswordModal}>
                                         <Icon.Lock/> Change password
                                     </Button>
                                 </Col>

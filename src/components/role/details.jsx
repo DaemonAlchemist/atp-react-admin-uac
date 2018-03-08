@@ -6,8 +6,8 @@ import {Button} from 'react-bootstrap';
 
 export default props => props.role ?
     <div>
-        <Button bsSize="lg" bsStyle="danger" onClick={props.deleteRole} style={{float: "right"}}>
-            <Icon.Times /> Delete role
+        <Button bsSize="lg" bsStyle="link" onClick={props.deleteRole} style={{float: "right"}}>
+            <span className="text-danger"><Icon.Trash /> Delete role</span>
         </Button>
 
         <h1 style={{marginTop: 0}}>{props.role.name}</h1>

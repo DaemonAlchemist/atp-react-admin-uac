@@ -22,7 +22,7 @@ export default props =>
                 </FormGroup>
             </Modal.Body>
             <Modal.Footer>
-                <Button bsStyle="primary" type="submit">
+                <Button bsStyle="link" type="submit">
                     <Icon.Lock/> Change Password
                 </Button>
             </Modal.Footer>

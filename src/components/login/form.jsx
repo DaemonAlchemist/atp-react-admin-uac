@@ -19,7 +19,7 @@ export default props =>
                 </FormGroup>
             </Modal.Body>
             <Modal.Footer>
-                <Button bsStyle="primary" type="submit">
+                <Button bsStyle="link" type="submit">
                     <Icon.SignInAlt/> Login
                 </Button>
             </Modal.Footer>

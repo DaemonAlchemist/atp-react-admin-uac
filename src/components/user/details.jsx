@@ -28,8 +28,8 @@ export default ({user, updateUser, updateEnabled, updateLocked, deleteUser, allR
     <Col xs={12} sm={2} md={4} className="text-right">
         <InlineEdit.Toggle enabled={user.enabled} update={updateEnabled}/>
         <InlineEdit.Toggle enabled={!user.locked} labelEnabled="Unlocked" labelDisabled="Locked" update={updateLocked}/>
-        <Button bsSize="lg" bsStyle="danger" onClick={deleteUser}>
-            <Icon.Times /> Delete user
+        <Button bsSize="lg" bsStyle="link" onClick={deleteUser}>
+            <span className="text-danger"><Icon.Trash /> Delete user</span>
         </Button>
         <br/>
         <h2><InlineEdit.Text id="user.password.edit" inline value="" name="newPassword" label="New password" placeHolder="Set new password" onSave={updateUser} /></h2>
