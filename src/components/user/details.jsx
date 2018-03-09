@@ -2,7 +2,7 @@
 import React from "react";
 import {Col, Row, Button} from "react-bootstrap";
 import {InlineEdit} from "atp-inline-edit";
-import {Assigner} from "atp-ui";
+import {Assigner, DeleteButton} from "atp-ui";
 import {Icon} from 'react-font-awesome-5';
 import ApiKeyList from "../../containers/api-key/list";
 
@@ -28,9 +28,14 @@ export default ({user, updateUser, updateEnabled, updateLocked, deleteUser, allR
     <Col xs={12} sm={2} md={4} className="text-right">
         <InlineEdit.Toggle enabled={user.enabled} update={updateEnabled}/>
         <InlineEdit.Toggle enabled={!user.locked} labelEnabled="Unlocked" labelDisabled="Locked" update={updateLocked}/>
-        <Button bsSize="lg" bsStyle="link" onClick={deleteUser}>
-            <span className="text-danger"><Icon.Trash /> Delete user</span>
-        </Button>
+        <DeleteButton
+            id={`userDeleteBtn${user.id}`}
+            onClick={deleteUser}
+            text="Delete user"
+            message={`Are you sure you want to delete the user ${user.userName}?  This cannot be undone.`}
+            size="lg"
+            width="250px"
+        />
         <br/>
         <h2><InlineEdit.Text id="user.password.edit" inline value="" name="newPassword" label="New password" placeHolder="Set new password" onSave={updateUser} /></h2>
     </Col>

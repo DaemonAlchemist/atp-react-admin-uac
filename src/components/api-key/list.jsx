@@ -2,6 +2,7 @@
 import React from 'react';
 import {Panel, Button, Table} from 'react-bootstrap';
 import {Icon} from 'react-font-awesome-5';
+import {DeleteButton} from 'atp-ui';
 
 export default ({userId, keys, onCreate, onDelete, onCopy}) =>
     <Panel>
@@ -17,12 +18,19 @@ export default ({userId, keys, onCreate, onDelete, onCopy}) =>
                     <tr>
                         <td>
                             {key.apiKey}
-                            <Button bsStyle="link" onClick={onDelete(key.id)} style={{float: "right"}}>
-                                <span className="text-danger"><Icon.Trash /> Revoke</span>
-                            </Button>
-                            <Button bsStyle="link" onClick={onCopy(key.apiKey)} style={{float: "right"}} title="Copy key to clipboard">
-                                <Icon.Copy /> Copy
-                            </Button>
+                            <div style={{float: "right"}}>
+                                <Button bsStyle="link" onClick={onCopy(key.apiKey)} title="Copy key to clipboard">
+                                    <Icon.Copy /> Copy
+                                </Button>
+                                <DeleteButton
+                                    id={`apiKeyDeleteBtn${key.id}`}
+                                    onClick={onDelete(key.id)}
+                                    text="Revoke"
+                                    message="Are you sure you want to revoke this API key?  This cannot be undone."
+                                    confirmText="Revoke"
+                                    width="250px"
+                                />
+                            </div>
                         </td>
                     </tr>
                 )}

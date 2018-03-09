@@ -3,12 +3,20 @@ import React from "react";
 import {Assigner} from "atp-ui";
 import {Icon} from 'react-font-awesome-5';
 import {Button} from 'react-bootstrap';
+import {DeleteButton} from 'atp-ui';
 
 export default props => props.role ?
     <div>
-        <Button bsSize="lg" bsStyle="link" onClick={props.deleteRole} style={{float: "right"}}>
-            <span className="text-danger"><Icon.Trash /> Delete role</span>
-        </Button>
+        <div style={{float: "right"}}>
+            <DeleteButton
+                id={`roleDeleteBtn${props.role.id}`}
+                onClick={props.deleteRole}
+                text="Delete role"
+                size="lg"
+                message={`Are you sure you want to delete the '${props.role.name}' role?  This cannot be undone.`}
+                width="250px"
+            />
+        </div>
 
         <h1 style={{marginTop: 0}}>{props.role.name}</h1>
 
