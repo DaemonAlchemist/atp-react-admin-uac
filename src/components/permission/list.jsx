@@ -21,6 +21,7 @@ export default props =>
                                     id={`permissionDeleteBtn${permission.id}`}
                                     onClick={props.onDelete(permission.id)}
                                     message={`Are you sure you want to delete the permission ${permission.name}`}
+                                    width="250px"
                                 />
                             </div>
                         </ListGroupItem>
