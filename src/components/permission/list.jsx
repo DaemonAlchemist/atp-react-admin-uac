@@ -7,7 +7,7 @@ import {Icon} from 'react-font-awesome-5';
 import {DeleteButton} from 'atp-ui';
 
 export default props =>
-    <Col xs={6} sm={4} md={3}>
+    <Col xs={12} sm={4} md={3} lg={2}>
         {props.permissions
             ?   <ListGroup>
                     <ListGroupItem>

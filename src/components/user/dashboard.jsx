@@ -6,10 +6,10 @@ import UserList from "../../containers/user/list";
 
 export default props =>
     <Row>
-        <Col xs={6} sm={4} md={3}>
+        <Col xs={12} sm={4} md={3}>
             <UserList onClick={props.selectUser}/>
         </Col>
-        <Col xs={6} sm={8} md={9}>
+        <Col xs={12} sm={8} md={9}>
             <UserDetails userId={props.userId} />
         </Col>
     </Row>;

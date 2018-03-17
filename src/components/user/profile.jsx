@@ -9,17 +9,17 @@ import HasPermission from "../../containers/HasPermission";
 
 export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, userRoles}) =>
     <Row>
-        <Col xs={6} xsOffset={3}>
+        <Col xs={12} sm={8} smOffset={1} md={6} mdOffset={3}>
             <Row>
-                <Col xs={12} sm={6}>
+                <Col xs={12} lg={6}>
                     <Panel>
                         <Panel.Heading>
                             Profile Info
                         </Panel.Heading>
                         <Panel.Body>
                             <Row>
-                                <Col xs={3}><b>First name:</b></Col>
-                                <Col xs={9}>
+                                <Col xs={4}><b>First name:</b></Col>
+                                <Col xs={8}>
                                     <InlineEdit.Text
                                     id="user.firstName.edit"
                                     value={user.firstName}
@@ -27,8 +27,10 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                                     onSave={updateUser(user.id)}
                                 />
                                 </Col>
-                                <Col xs={3}><b>Last name:</b></Col>
-                                <Col xs={9}>
+                            </Row>
+                            <Row>
+                                <Col xs={4}><b>Last name:</b></Col>
+                                <Col xs={8}>
                                     <InlineEdit.Text
                                     id="user.lastName.edit"
                                     value={user.lastName}
@@ -36,8 +38,10 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                                     onSave={updateUser(user.id)}
                                 />
                                 </Col>
-                                <Col xs={3}><b>Username:</b></Col>
-                                <Col xs={9}>
+                            </Row>
+                            <Row>
+                                <Col xs={4}><b>Username:</b></Col>
+                                <Col xs={8}>
                                     <InlineEdit.Text
                                         id="user.name.edit"
                                         value={user.userName}
@@ -45,8 +49,10 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                                         onSave={updateUser(user.id)}
                                     />
                                 </Col>
-                                <Col xs={3}><b>Email:</b></Col>
-                                <Col xs={9}>
+                            </Row>
+                            <Row>
+                                <Col xs={4}><b>Email:</b></Col>
+                                <Col xs={8}>
                                     <InlineEdit.Text
                                         id="user.email.edit"
                                         value={user.email}
@@ -54,7 +60,9 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                                         onSave={updateUser(user.id)}
                                     />
                                 </Col>
-                                <Col xs={9} xsOffset={3}>
+                            </Row>
+                            <Row>
+                                <Col xs={8} xsOffset={4}>
                                     <Button bsStyle="link" onClick={showPasswordModal}>
                                         <Icon.Lock/> Change password
                                     </Button>
@@ -63,7 +71,7 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                         </Panel.Body>
                     </Panel>
                 </Col>
-                <Col xs={12} sm={6}>
+                <Col xs={12} lg={6}>
                     <HasPermission permissions={['auth.role.view']}>
                         <Panel>
                             <Panel.Heading>Roles</Panel.Heading>

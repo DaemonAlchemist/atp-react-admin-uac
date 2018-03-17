@@ -6,7 +6,7 @@ import NewRoleForm from "../../containers/role/form/create";
 import {Icon} from 'react-font-awesome-5';
 
 export default props =>
-    <Col xs={6} sm={4} md={3}>
+    <Col xs={12} sm={4} md={3} lg={2}>
         {props.roles
             ?   <ListGroup>
                     <ListGroupItem>
