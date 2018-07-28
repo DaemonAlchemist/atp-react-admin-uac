@@ -54,7 +54,7 @@ export default {
                     uac: {
                         label: <span><Icon.Lock /> UAC</span>,
                         sortOrder: 0,
-                        permissions: ['auth.permission.view', 'auth.role.view', 'auth.user.view'],
+                        permissions: ['auth.navMenu.view'],
                         children: {
                             permissions: {
                                 label: <Link to="/uac/permissions" label="Permissions" target="new"><Icon.Lock fixedWidth /> Permissions</Link>,
