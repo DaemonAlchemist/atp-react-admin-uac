@@ -12,7 +12,7 @@ import {UserLink, UserLinkFull} from "./components/links";
 import Authenticated from "./containers/Authenticated";
 import HasPermission from "./containers/HasPermission";
 import LoginForm from "./containers/login/form";
-import {Permission} from "./reducer/permission";
+import {Permission, hasPermission, hasPermissions} from "./reducer/permission";
 import {Role} from "./reducer/role";
 import {User} from "./reducer/user";
 
@@ -99,4 +99,7 @@ export default {
     }
 };
 
-export {Authenticated, LoginForm, HasPermission, Role, User, Permission, getLoginToken, UserLink, UserLinkFull};
+export {
+    Authenticated, LoginForm, HasPermission, Role, User, Permission, getLoginToken, UserLink, UserLinkFull,
+    hasPermission, hasPermissions
+};
