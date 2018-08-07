@@ -4,7 +4,6 @@ import {Col, ListGroup, ListGroupItem, Button} from "react-bootstrap";
 import {connect} from 'react-redux';
 import {Icon} from 'react-font-awesome-5';
 
-import {o} from "atp-sugar";
 import NewPermissionForm from "../../containers/permission/form/create";
 import {DeleteButton, radio} from 'atp-ui';
 import {merge, keys, get, map, remove} from 'atp-pointfree';
