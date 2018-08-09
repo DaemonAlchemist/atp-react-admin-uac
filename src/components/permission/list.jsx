@@ -21,11 +21,10 @@ const PermissionList = connect(
         subNodes: key => remove(['id', 'name', 'version', '__leaf__'])(items[key])
     }),
     (dispatch, {level}) => ({
-        select: key => () => dispatch(radio.set(`permissionHierarchy${level}`, key)),
-        clear: () => dispatch(radio.clear(`permissionHierarchy${level}`)),
+        toggle: key => () => dispatch(radio.toggle(`permissionHierarchy${level}`, key)),
         remove: name => () => {alert(`delete ${name}`);}
     })
-)(({items, level, isSelected, selectedItem, isLeaf, hasSubNodes, subNodes, select, clear, remove, onDelete}) => [
+)(({items, level, isSelected, selectedItem, isLeaf, hasSubNodes, subNodes, toggle, remove, onDelete}) => [
     <Col xs={3}>
         <ListGroup>
             {level === 0 &&
@@ -34,7 +33,7 @@ const PermissionList = connect(
                 </ListGroupItem>
             }
             {keys(items).sort().map(key =>
-                <ListGroupItem bsStyle={isSelected(key) ? "info" : "regular"} onClick={isSelected(key) ? clear : select(key)} >
+                <ListGroupItem bsStyle={isSelected(key) ? "info" : "regular"} onClick={toggle(key)} >
                     {isLeaf(key) ? <Icon.Key /> : <Icon.Folder />}
                     &nbsp;{isLeaf(key) ? items[key].name : key}
                     <div style={{float: "right"}}>
