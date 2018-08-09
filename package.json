@@ -1,6 +1,6 @@
 {
   "name": "atp-uac",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A user access control module.",
   "main": "lib/index.js",
   "scripts": {
