@@ -2,7 +2,7 @@
 import Profile from "../../components/user/profile";
 import {applyLifecycle} from "react-lifecycle-component";
 import {connect} from 'react-redux';
-import {toggle} from 'atp-ui';
+import {toggle} from 'basic-reducers';
 import {passwordModalToggleId} from "./form/change-password";
 import {compose, get} from 'atp-pointfree';
 import {User} from "../../reducer/user";

@@ -4,7 +4,7 @@ import {reduxForm} from "redux-form";
 import {User} from "../../../reducer/user";
 import {connect} from 'react-redux';
 import {compose} from 'atp-pointfree';
-import {toggle} from 'atp-ui';
+import {toggle} from 'basic-reducers';
 
 export const passwordModalToggleId = 'atpUac.change.password.modal';
 
