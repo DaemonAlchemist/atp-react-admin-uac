@@ -5,7 +5,8 @@ import {connect} from 'react-redux';
 import {Icon} from 'react-font-awesome-5';
 
 import NewPermissionForm from "../../containers/permission/form/create";
-import {DeleteButton, radio} from 'atp-ui';
+import {DeleteButton} from 'atp-ui';
+import {radio} from 'basic-reducers';
 import {merge, keys, get, map, remove} from 'atp-pointfree';
 
 const hierarchify = ({items, separator = "."}) => items
