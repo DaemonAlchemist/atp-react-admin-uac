@@ -11,7 +11,7 @@ import {merge, keys, get, map, remove} from 'atp-pointfree';
 
 const hierarchify = ({items, separator = "."}) => items
     .map(item => item.name.split(separator).reverse().reduce((obj, index) => ({[index]: obj}), {__leaf__: true, ...item}))
-    .reduce(merge);
+    .reduce(merge, {});
 
 const PermissionList = connect(
     (state, {items, level}) => ({
@@ -26,7 +26,7 @@ const PermissionList = connect(
         remove: name => () => {alert(`delete ${name}`);}
     })
 )(({items, level, isSelected, selectedItem, isLeaf, hasSubNodes, subNodes, toggle, remove, onDelete}) => [
-    <Col xs={3}>
+    <Col key={`permissionList${level}`} xs={3}>
         <ListGroup>
             {level === 0 &&
                 <ListGroupItem>
@@ -34,28 +34,30 @@ const PermissionList = connect(
                 </ListGroupItem>
             }
             {keys(items).sort().map(key =>
-                <ListGroupItem bsStyle={isSelected(key) ? "info" : "regular"} onClick={toggle(key)} >
-                    {isLeaf(key) ? <Icon.Key /> : <Icon.Folder />}
-                    &nbsp;{isLeaf(key) ? items[key].name : key}
-                    <div style={{float: "right"}}>
-                        {isLeaf(key) &&
-                            <DeleteButton
-                                id={`permissionDeleteBtn${items[key].id}`}
-                                onClick={onDelete(items[key].id)}
-                                message={`Are you sure you want to delete the permission ${items[key].name}`}
-                                width="250px"
-                            />
-                        }
-                        {hasSubNodes(key) &&
-                            <Button bsStyle="link" bsSize="xsmall">
-                                <Icon.ChevronRight/>
-                            </Button>
-                        }
-                        {!hasSubNodes(key) &&
-                            <Button bsStyle="link" bsSize="xsmall">
-                                <Icon.ChevronRight style={{visibility: "hidden"}}/>
-                            </Button>
-                        }
+                <ListGroupItem key={key} bsStyle={isSelected(key) ? "info" : null} style={{padding: 0}}>
+                    <div style={{padding: "10px 15px"}} onClick={toggle(key)}>
+                        {isLeaf(key) ? <Icon.Key /> : <Icon.Folder />}
+                        &nbsp;{isLeaf(key) ? items[key].name : key}
+                        <div style={{float: "right"}}>
+                            {isLeaf(key) &&
+                                <DeleteButton
+                                    id={`permissionDeleteBtn${items[key].id}`}
+                                    onClick={onDelete(items[key].id)}
+                                    message={`Are you sure you want to delete the permission ${items[key].name}`}
+                                    width="250px"
+                                />
+                            }
+                            {hasSubNodes(key) &&
+                                <Button bsStyle="link" bsSize="xsmall">
+                                    <Icon.ChevronRight/>
+                                </Button>
+                            }
+                            {!hasSubNodes(key) &&
+                                <Button bsStyle="link" bsSize="xsmall">
+                                    <Icon.ChevronRight style={{visibility: "hidden"}}/>
+                                </Button>
+                            }
+                        </div>
                     </div>
                 </ListGroupItem>
             )}
@@ -63,6 +65,7 @@ const PermissionList = connect(
     </Col>,
     selectedItem && items[selectedItem] &&
         <PermissionList
+            key={`permissionSubList${level}`}
             items={subNodes(selectedItem)}
             level={level+1}
             onDelete={onDelete}
