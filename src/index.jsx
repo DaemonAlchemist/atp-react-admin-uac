@@ -84,6 +84,7 @@ export default {
                         children: {
                             myAccount: {
                                 label: <Link to="/uac/profile" label="Profile" target="new"><Icon.User /> My Account</Link>,
+                                noAnchor: true,
                                 sortOrder: 0
                             },
                             logout: {

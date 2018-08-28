@@ -15,7 +15,7 @@ export default ({userId, keys, onCreate, onDelete, onCopy}) =>
         <Table>
             <tbody>
                 {keys && keys.map(key =>
-                    <tr>
+                    <tr key={key.id}>
                         <td>
                             {key.apiKey}
                             <div style={{float: "right"}}>

@@ -35,7 +35,7 @@
     "atp-redux-entity": "^0.3.3",
     "atp-rest-client": "^0.1.5",
     "atp-sugar": "^0.9.1",
-    "atp-ui": "^0.14.0",
+    "atp-ui": "^0.14.1",
     "basic-reducers": "^0.2.1",
     "copy-to-clipboard": "^3.0.8",
     "react": "^16.4.2",

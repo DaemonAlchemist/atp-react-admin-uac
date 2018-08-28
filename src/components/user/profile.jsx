@@ -78,7 +78,7 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                             <Panel.Body>
                                 <Row>
                                     <Col xs={12}>
-                                        {userRoles.sort().map(role => <Badge style={{margin: "4px"}}>{role.name}</Badge>)}
+                                        {userRoles.sort().map(role => <Badge key={role.id} style={{margin: "4px"}}>{role.name}</Badge>)}
                                     </Col>
                                 </Row>
                             </Panel.Body>
@@ -93,7 +93,7 @@ export default ({user, isPasswordModalVisible, showPasswordModal, updateUser, us
                         <Panel.Body>
                             <Row>
                                 <Col xs={12}>
-                                    {user.permissions.sort().map(name => <Badge style={{margin: "4px"}}>{name}</Badge>)}
+                                    {user.permissions && user.permissions.sort().map(name => <Badge key={name} style={{margin: "4px"}}>{name}</Badge>)}
                                 </Col>
                             </Row>
                         </Panel.Body>
